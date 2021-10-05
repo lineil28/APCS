@@ -1,7 +1,7 @@
-/* <Kevin> (Humans: Neil, Nora, Justin; Ducks: Hatch, Hans, Alfred)
+/* Kevin Humans: Neil, Nora, Justin; Ducks: Hatch, Hans, Alfred
 APCS
-HW<09> -- <What Are BigSibs Good For?>
-<2021>-<10>-<2>
+HW09 -- What Are BigSibs Even Good For?
+2021-10-2
 */
 
 public class BigSib {

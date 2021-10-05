@@ -1,7 +1,7 @@
 public class Greet {
     public static void main( String[] args ) {
-        BigSib.greet("Hatch");
-        BigSib.greet("Hans");
-        BigSib.greet("Alfred");
+        BigSib.greet("Flim");
+        BigSib.greet("Flam");
+        BigSib.greet("Kazaam");
     }
 }
