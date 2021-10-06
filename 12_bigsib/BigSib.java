@@ -1,5 +1,5 @@
 
-/* (TNPG name) (Humans: Neil, Ari; Ducks: Hatch, (ari duck name))
+/* (TNPG name) (Humans: Neil, Ari; Ducks: Hatch, Javier)
 APCS
 HW 12 -- On Elder Individuality and the Elimination of Radio Fuzz
 2021 10 05
