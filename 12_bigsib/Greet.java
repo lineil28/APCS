@@ -1,30 +1,29 @@
-
 public class Greet {
   public static void main( String[] args ) {
     String greeting;
 
-    BigSib freshman = new BigSib();
-    freshman.setHelloMsg("Word up");
+    BigSib richard = new BigSib();
+    richard.setHelloMsg("Word up");
 
-    greeting = freshman.greet("freshman");
+    greeting = richard.greet("freshman");
     System.out.println(greeting);
 
-    BigSib space = new BigSib();
-    space.setHelloMsg("Salutations");
+    BigSib prichard = new BigSib();
+    prichard.setHelloMsg("Salutations");
 
-    greeting = space.greet("Dr. Spaceman");
+    greeting = prichard.greet("Dr. Spaceman");
     System.out.println(greeting);
 
-    BigSib kong = new BigSib();
-    kong.setHelloMsg("Hey ya");
+    BigSib brichard = new BigSib();
+    brichard.setHelloMsg("Hey ya");
 
-    greeting = kong.greet("Kong Fooey");
+    greeting = brichard.greet("Kong Fooey");
     System.out.println(greeting);
 
-    BigSib mom = new BigSib();
-    mom.setHelloMsg("Sup");
+    BigSib qrichard = new BigSib();
+    qrichard.setHelloMsg("Sup");
 
-    greeting = mom.greet("mom");
+    greeting = qrichard.greet("mom");
     System.out.println(greeting);
 
   } //end main()
