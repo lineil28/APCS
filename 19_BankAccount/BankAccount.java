@@ -30,7 +30,7 @@ public class BankAccount {
 	}
 
 	public int setPin( int newPin ) {
-		if ( ( newPin >= 1000 ) && ( newPin <= 9998 ) ) {
+		if ( newPin >= 1000 && newPin <= 9998 ) {
 			pin = newPin;
 			return pin;
 		}
@@ -42,7 +42,7 @@ public class BankAccount {
 	}
 
 	public int setId( int newId ) {
-		if ( ( newId >= 100000000 ) && ( newId <= 999999998 ) ) {
+		if ( newId >= 100000000 && newId <= 999999998 ) {
 			id = newId;
 			return id;
 		}
@@ -74,7 +74,7 @@ public class BankAccount {
 	}
 
 	public boolean authenticate( int inputId, String inputPassword ) {
-		if ( ( id == inputId ) && ( password == inputPassword ) ) {
+		if ( id == inputId && password == inputPassword ) {
 			return true;
 		}
 		else {
