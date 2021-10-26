@@ -1,12 +1,12 @@
 /*
 * Creative Name - Julia Kozak, Neil Lin (Flopsy, Hatch)
 * APCS
-* HW24 -- What Does Equality Look Like?
-* 2021-10-25
+* HW24 -- Get It While You Can
+* 2021-10-26
 *
-* DISCO: 
-*
-* QCC: 
+* DISCO: while loops can run a certain set of actions until a certain condition is met
+* QCC: == seemed to work for string equality, do we have to use .equals() ?
+* POST-v0 MODS: equals is now a void method that looks at whether the up faces of two coins are the same, and if they are, it adds 1 to a new int matchCtr; the new method flipXY flips two coins then compares their up faces, and it does this until the conditions for the number of matches is satisfied.
 *
 */
 
@@ -15,8 +15,9 @@ public class Coin {
   private double value;
   private String upFace;
   private String name;
-  private int flipCtr, headsCtr, tailsCtr, matchCtr;
+  private int flipCtr, headsCtr, tailsCtr;
   private double bias;
+  private int matchCtr;
 
 
   /***
@@ -25,14 +26,7 @@ public class Coin {
    *  postcond:
    ***/
   public Coin() {
-  flipCtr = 0;
-  headsCtr = 0;
-  tailsCtr = 0;
-  matchCtr = 0;
-  bias = 0.5;
-  name = "null";
-  upFace = "heads";
-  assignValue(name);
+  reset("heads", 0.5);
   }
 
 
@@ -106,6 +100,10 @@ public class Coin {
 
   public double getBias() {
     return bias;
+  }
+
+  public int getMatchCtr() {
+    return matchCtr;
   }
   // ----------------------------
 
@@ -187,21 +185,18 @@ public class Coin {
    * postcond: Returns true if both coins showing heads
    * or both showing tails. False otherwise.
    ***/
-  public boolean equals( Coin other ) {
-	if (upFace == other.upFace) {
-	matchCtr +=1;
-    return true;
-  } else {
-    return false;
+  public void equals( Coin other ) {
+    if (upFace == other.upFace) {
+      matchCtr += 1;
+     }
   }
-  }
-  
-  public static match(Coin otherCoin) {
-    while (matchCtr < 65536 && matchCtr % 2005 != 0){
-  flip();
-  otherCoin.flip();
-  equals(otherCoin);
-  }
+
+  public void flipXY(Coin other) {
+    while (matchCtr < 65536 || matchCtr % 2005 != 0) {
+      flip();
+      other.flip();
+      equals(other);
+    }
   }
 
 
@@ -211,7 +206,7 @@ public class Coin {
    * postcond: Return String comprised of name and current face
    ***/
   public String toString() {
-	return name + " -- " + upFace;
+    return name + " -- " + upFace;
   }
 
 }//end class
