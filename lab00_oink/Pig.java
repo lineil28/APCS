@@ -8,7 +8,14 @@
  * class Pig
  * a Pig Latin translator
 
- QCC/DISCO:
+ ***
+ *Created isACapital
+ ***
+
+ * DISCO -
+
+ * QCC:
+
  * ~~~~~~~~~~~~~~~~~~~ SKELETON ~~~~~~~~~~~~~~~~~~~
  *           9
  *     ,--.-'-,--.
@@ -27,7 +34,7 @@
 
 public class Pig {
 
-    private static final String VOWELS = "aeiouy";
+    private static final String VOWELS = "aeiouyAEIOUY";
     private static final String CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String PUNCS = ".,:;!?";
 
@@ -42,17 +49,6 @@ public class Pig {
   public static boolean hasA( String w, String letter ) {
 
     return w.indexOf(letter) != -1;
-
-    // equiv code, wo using indexOf()...
-       boolean ans = false;
-       for( int i = 0; i < w.length(); i++ ) {
-       if ( w.substring(i,i+1).equals(letter) ) {
-       ans = true;
-       //Q: is there a more efficient way?
-       }
-       }
-       return ans;
-
   }//end hasA()
 
 
@@ -74,14 +70,6 @@ public class Pig {
 
     return allVowels(w).length();
 
-    // long version using for
-       int numVowels = 0; //init vowels counter var
-       //must touch each letter in word, so use FOR
-       for( int i = 0; i < w.length(); i++ ) {
-       if ( isAVowel( w.substring(i,i+1) ) )
-       numVowels++;
-       }
-       return numVowels;
 
   }
 
@@ -159,6 +147,11 @@ public class Pig {
 
     String ans = "";
 
+    if ( hasAVowel(w) == false) {
+      ans = w + "ay";
+      return ans;
+    }
+
     if ( beginsWithVowel(w) )
       ans = w + "way";
 
@@ -171,9 +164,16 @@ public class Pig {
   }
 
   // code to be added to your growing Pig Latin translator
+	//capital letters
+  public static boolean isACapital( String letter ) {
+    return CAPS.indexOf( letter ) != -1;
+  }
 
 
   public static void main( String[] args ) {
+
+		System.out.println(isACapital("A"));
+    System.out.println(isACapital("a"));
 
     for( String word : args ) {
       System.out.println( "allVowels \t" + allVowels(word) );
@@ -182,7 +182,6 @@ public class Pig {
       System.out.println( "engToPig \t" + engToPig(word) );
       System.out.println( "---------------------" );
     }
-
   }//end main()
 
 }//end class Pig
