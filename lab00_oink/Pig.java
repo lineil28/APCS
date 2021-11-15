@@ -7,15 +7,8 @@
  *
  * class Pig
  * a Pig Latin translator
-
- ***
- *Created isACapital
- ***
-
- * DISCO -
-
+ * DISCO - I discovered that the syntax is substring not subString even after all these weeks of working with substrings.
  * QCC:
-
  * ~~~~~~~~~~~~~~~~~~~ SKELETON ~~~~~~~~~~~~~~~~~~~
  *           9
  *     ,--.-'-,--.
@@ -67,10 +60,15 @@ public class Pig {
     post: countVowels("meatball") -> 3
     **/
   public static int countVowels( String w ) {
-
-    return allVowels(w).length();
-
-
+    int counter = 0;
+    String letter;
+    for(int i=0;i<w.length();i++){
+      letter=w.substring(i,i+1);
+      if(isAVowel(letter)==true){
+        counter+=1;
+      }
+    }
+    return counter;
   }
 
 
@@ -81,8 +79,7 @@ public class Pig {
     hasAVowel("zzz") -> false
     **/
   public static boolean hasAVowel( String w ) {
-
-    return countVowels(w) >= 0;
+    return countVowels(w) > 0;
   }
 
 
@@ -96,7 +93,7 @@ public class Pig {
     **/
   public static String allVowels( String w ) {
 
-    String ans = ""; //init return String
+    String ans = " "; //init return String
 
     for( int i = 0; i < w.length(); i++ ) {
 
@@ -118,9 +115,9 @@ public class Pig {
 
     String ans = "";
 
-    if ( hasAVowel(w) ) //Q: Why this necess?
-      ans = allVowels(w).substring(0,1);
-
+    if ( hasAVowel(w) ){ //Q: Why this necess?
+      ans = allVowels(w).substring(1,2);
+    }
     return ans;
   }
 
@@ -144,17 +141,13 @@ public class Pig {
     engToPig("java")   --> "avajay"
     **/
   public static String engToPig( String w ) {
-
     String ans = "";
-
-    if ( hasAVowel(w) == false) {
+    if(countVowels(w)==0){
       ans = w + "ay";
-      return ans;
     }
-
-    if ( beginsWithVowel(w) )
+    else if ( beginsWithVowel(w) ){
       ans = w + "way";
-
+    }
     else {
       int vPos = w.indexOf( firstVowel(w) );
       ans = w.substring(vPos) + w.substring(0,vPos) + "ay";
@@ -163,23 +156,41 @@ public class Pig {
     return ans;
   }
 
+  public static String pigToCapitals(String w){
+    for(int i=0;i<w.length();i++){
+      if(isACapital(w.substring(i,i+1))){
+        String upper = w.substring(0,1);
+        String lower = w.substring(1,w.length());
+        w =  upper.toUpperCase()+lower.toLowerCase();
+      }
+    }
+    return w;
+  }
+
   // code to be added to your growing Pig Latin translator
-	//capital letters
+	//capital letters (precond: letter is 1 character long)
   public static boolean isACapital( String letter ) {
     return CAPS.indexOf( letter ) != -1;
   }
 
 
+  public static String ifPunc(String letter){
+			String ans = "";
+      if(PUNCS.indexOf(letter.substring(letter.length()-1))!= -1 ){
+      	ans = pigToCapitals(engToPig(letter.substring(0,letter.length()-1)) + letter.substring(letter.length()-1));
+      }
+    	return ans;
+  }
   public static void main( String[] args ) {
 
-		System.out.println(isACapital("A"));
-    System.out.println(isACapital("a"));
 
     for( String word : args ) {
-      System.out.println( "allVowels \t" + allVowels(word) );
+      System.out.println( "allVowels \t" + allVowels(word).substring(1) );
       System.out.println( "firstVowels \t" + firstVowel(word) );
       System.out.println( "countVowels \t" + countVowels(word) );
       System.out.println( "engToPig \t" + engToPig(word) );
+      System.out.println("pigToCapitals \t" + pigToCapitals(engToPig(word)));
+      System.out.println("ifPunc \t" + ifPunc(word));
       System.out.println( "---------------------" );
     }
   }//end main()
