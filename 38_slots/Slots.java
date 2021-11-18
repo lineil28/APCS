@@ -3,6 +3,7 @@
  * APCS pd8
  * HW38 -- Shmoney
  * 2021-11-18
+ * time spent - 0.7 hours
  *
  * Disco-retboo isn't always necessary since it's value is a boolean. Can just simply return true/false when needed instead
  * of setting retboo to such boolean value.
