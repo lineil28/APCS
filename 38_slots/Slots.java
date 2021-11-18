@@ -1,9 +1,12 @@
 /*****************************************************
- * Clyde "Thluffy" Sinclair
- * APCS pd00
+ * Team Green: Abdullah Faruque, Neil Lin, Russel Goychayev
+ * APCS pd8
  * HW38 -- Shmoney
  * 2021-11-18
  *
+ * Disco-retboo isn't always necessary since it's value is a boolean. Can just simply return true/false when needed instead
+ * of setting retboo to such boolean value.
+ * QCC- ...
  * class Slots
  * skeleton
  *****************************************************/
@@ -36,13 +39,11 @@ public class Slots {
     =====================================*/
   public Slots()
   {
+	_fruits = new String[FRUITS.length];
+	for (int i = 0 ; i<FRUITS.length;i++){
+		_fruits[i]=FRUITS[i];
+	}
     //allocate memory for _fruits based on size of FRUITS:
-    String [] _fruits;
-    _fruits= new String[12];
-    for (int i=0; i<12;i++){
-      _fruits[i] = FRUITS[i];
-    }
-
     //copy elements of FRUITS into _fruits:
 
   }
@@ -55,7 +56,7 @@ public class Slots {
     =====================================*/
   public String toString()
   {
-    return _fruits[0]+"\t"+_fruits[1]+"\t"+_fruits[2];
+    return _fruits[0] + "\t" + _fruits[1] + "\t" + _fruits[2];
   }
 
 
@@ -66,7 +67,9 @@ public class Slots {
     =====================================*/
   private void swap( int i, int j )
   {
-
+	String temp=_fruits[i];
+	_fruits[i]=_fruits[j];
+	_fruits[j]=temp;
   }
 
 
@@ -80,8 +83,8 @@ public class Slots {
     // A simple approach to shuffling:
     // iterate through the array, swapping
     // the val at each index with a randomly chosen other index
-    for(  )
-      swap(  );
+    for( int i = 0; i<_fruits.length;i++ )
+      swap( i, ((int)(Math.random()*(_fruits.length)) ));
   }
 
 
@@ -94,7 +97,9 @@ public class Slots {
   public boolean jackpot()
   {
     boolean retBoo = false;
-
+	if(_fruits[0].equals(_fruits[1]) && _fruits[0].equals(_fruits[2])){
+		retBoo=true;
+	}
 
     return retBoo;
   }
@@ -107,20 +112,21 @@ public class Slots {
     or if first 3 slots mutually distinct,
     false otherwise
     =====================================*/
-  public boolean miniWin()
+ public boolean miniWin()
   {
-    boolean retBoo = ?
-
-
-    return retBoo;
+    if(jackpot()) return true;
+	if (!_fruits[0].equals(_fruits[1]) && !_fruits[0].equals(_fruits[2]) && !_fruits[2].equals(_fruits[1]))
+      return true;
+    return false;
+//no need for retboo, cus we returning booleans
   }
 
 
   //main() method for testing
   public static void main( String[] args ) {
     //usage: move bar below down 1 line at a time to test functionality...
-    System.out.println(toString());
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
     Slots machine01 = new Slots();
     Slots machine02 = new Slots();
 
@@ -170,7 +176,6 @@ public class Slots {
     System.out.println( "====================================" );
     System.out.println( "Your spin..." + "\t" + machine01 );
     System.out.println( "JACKPOT!\n" );
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   }//end main
 
 }//end class Slots
