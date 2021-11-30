@@ -24,10 +24,10 @@ public class TwoDimArray
   //          uses a FOR loop
   public static void print1( int[][] a )
   {
-    for (int i = 0; i < a.length; i++) {
-      System.out.print("" + a[i][0]);
-      for (int n = 1; n < a[i].length; n++) {
-	       System.out.print("," + a[i][n]);
+    for (int r = 0; r < a.length; r++) {
+      System.out.print("" + a[r][0]);
+      for (int c = 1; c < a[r].length; c++) {
+	       System.out.print("," + a[r][c]);
       }
       System.out.print("\n");
     }
@@ -37,10 +37,10 @@ public class TwoDimArray
   //          uses a FOREACH loop
   public static void print2( int[][] a )
   {
-	for (int[] num : a) {
+	for (int[] r : a) {
       String output = ""; //each row has their own string
-      for (int nums : num) {
-		output += nums + ",";
+      for (int c : r) {
+		output += c + ",";
       }
       System.out.println(output.substring(0, output.length()-1));//gets rid of the comma at the end of each row
     }
@@ -50,9 +50,9 @@ public class TwoDimArray
   public static int sum1( int[][] a )
   {
 	  int output=0;
-	  for(int a1=0;a1<a.length;a1++){
-		  for(int a2=0;a2<a[a1].length;a2++){
-			  output+=a[a1][a2];
+	  for(int r=0;r<a.length;r++){
+		  for(int c=0;c<a[r].length;c++){
+			  output+=a[r][c];
 		  }
 	  }
     return output;
@@ -63,8 +63,8 @@ public class TwoDimArray
   public static int sum2( int [][] m )
   {
 	int output=0;
-	  for(int a1=0;a1<m.length;a1++){
-		  output+=(sumRow(a1,m));
+	  for(int r=0;r<m.length;r++){
+		  output+=(sumRow(r,m));
 	  }
     return output;
   }
@@ -75,8 +75,8 @@ public class TwoDimArray
   public static int sumRow( int r, int[][] a )
   {
 	  int output=0;
-		  for(int a2=0;a2<a[r].length;a2++){
-			  output+=a[r][a2];
+		  for(int c=0;c<a[r].length;c++){
+			  output+=a[r][c];
 		  }
     return output;
   }
@@ -86,8 +86,8 @@ public class TwoDimArray
   public static int sumRow2(int r, int[][] m)
   {
     int summer = 0;
-	for(int nums:m[r]){
-		summer+=nums;
+	for(int c:m[r]){
+		summer+=c;
 	}
     return summer;
   }
