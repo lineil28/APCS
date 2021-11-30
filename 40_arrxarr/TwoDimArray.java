@@ -5,7 +5,7 @@
  ******************************/
 
 /*****************************************************
-  * Team Green: Abdullah Faruque, Neil Lin, Russel Goychayev
+  * Team Green: Abdullah Faruque, Neil Lin, Russell Goychayev
   * APCS pd8
   * HW40 -- Demand A Raise
   * 2021-11-29

@@ -1,8 +1,11 @@
-public class test{
+/**
+Green: Abdullah Faruque, Neil Lin, Russell Goychayev
+**/
+public class Passer{
   public static int x = 5;
 
-  public static int add1(int num){
-    return (num + 1);
+  public static int add1(int x){
+    return (x + 1);
   }
 
   public static void main(String[] args){
