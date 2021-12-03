@@ -1,27 +1,61 @@
+/*
+ * Team Green: Abdullah Faruque, Neil Lin, Russell Goychayev
+ * APCS pd8
+ * HW41: Be Rational
+ * 2021-12-1
+ * time spent - 0.3 hours
+ *
+ * Disco- this.something can reference "this" objects stuff, the one you are using.
+ *
+ * QCC- ...
+ *
+*/
 public class Rational{
-  private static int numer , denom;
+ private int numer , denom;
 
-  public Rational(){
-    this.numer = 0;
-    this.denom = 1;
-  }
+ public Rational(){
+   this.numer = 0;
+   this.denom = 1;
+ }
 
-  public Rational(int num, int dem) {
-    this.numer = num;
-    this.denom = dem;
+ public Rational(int numer, int denom) {
+   this.numer = numer;
+   this.denom = denom;
 
-    if (dem == 0) {
-      System.out.println("Invalid denominator.");
-    }
-  }
+   if (denom == 0) {
+     System.out.println("Invalid denominator.");
+   numer=0;
+   denom=1;
+   }
+ }
 
-  public static String toString(Rational r){
-    return (n + "/" + d);
-  }
+ public String toString(){
+   return (numer + "/" + denom);
+ }
 
-  public static void main(String[] args){
-    Rational r = new Rational(2,3);
-    System.out.println(toString(r));
+ public double floatValue(){
+   return ((double)numer/denom);
+ }
 
-  }
+ public void multiply(Rational s){
+   this.numer=(this.numer*s.numer);
+   this.denom=(this.denom*s.denom);
+ }
+
+ public void divide(Rational s){
+   this.numer=(this.numer*s.denom);
+   this.denom=(this.denom*s.numer);
+ }
+
+ public static void main(String[] args){
+   Rational r = new Rational(2,3);
+   Rational s = new Rational(1,2);
+   System.out.println(r.toString());
+   System.out.println(r.floatValue());
+   r.multiply(s);
+   System.out.println(r.toString());
+   r.divide(s);
+   System.out.println(r.toString());
+
+ }
 }
