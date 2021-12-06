@@ -19,6 +19,22 @@ public class Rational{
    this.denom = 1;
  }
 
+ public static int gcd(int n, int d){
+   if (n == 0){
+     System.out.println("Numerator is 0, gcd set to 1");
+     return 1;
+   }
+   while(d != n){
+     if(n > d) {
+       n = n - d;
+     }
+     else{
+       d = d - n;
+     }
+   }
+   return d;
+ }
+
  public Rational(int numer, int denom) {
    this.numer = numer;
    this.denom = denom;
@@ -63,26 +79,12 @@ public class Rational{
    this.denom=(this.denom*s.denom);
  }
 
- public static int gcd(Rational r){
-   n = r.numer;
-   d = r.denom;
-   if (n == 0){
-     System.out.println("Numerator is 0, gcd set to 1");
-     return 1;
-   }
-   while(d != n){
-     if(n > d) {
-       n = n - d;
-     }
-     else{
-       d = d - n;
-     }
-   }
-   return d;
+ public int gcd(){
+   return gcd(this.numer, this.denom);
  }
 
  public void reduce(){
-   gcd = gcd(this);
+   gcd = this.gcd();
    numer = numer / gcd;
    denom = denom / gcd;
  }
@@ -112,7 +114,7 @@ public class Rational{
    System.out.println(r.toString());
    r.subtract(s);
    System.out.println(r.toString());
-   System.out.println(gcd(r));
+   System.out.println(r.gcd());
    r.reduce();
    System.out.println(r.toString());
    System.out.println(r.compareTo(s));
