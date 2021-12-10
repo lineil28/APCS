@@ -82,7 +82,7 @@ public class SuperArray implements ListInt
 
 
   //adds an item after the last item
-  public void add( int newVal )
+  public boolean add( int newVal )
   {
 	int[] newData = new int[_size+1];
     for (int i = 0;i< _size;i++){
@@ -91,6 +91,7 @@ public class SuperArray implements ListInt
     newData[_size] = newVal;
     _data = newData;
     _size++;
+    return true;
   }
 
 
@@ -108,12 +109,14 @@ public class SuperArray implements ListInt
 
   //removes the item at index
   //shifts elements left to fill in newly-empted slot
-  public void remove( int index )
+  public int remove( int index )
   {
+    int oldVal = this._data[index];
     for (int i=index;i<this._size-1;i++) { //replacing the thing at index with its forward neighbor, and doing it for the following elements
       this._data[i] = this._data[i+1];
     }
     this._size--; //size is literally one less, cus we removed one number
+    return oldVal;
   }
 
 
@@ -177,6 +180,14 @@ public class SuperArray implements ListInt
       mayfield.add(1,77);
       System.out.println("Printing SuperArray mayfield post-insert...");
       System.out.println(mayfield);
+
+      ListInt a = new SuperArray();
+      a.add(3);
+      a.add(3);
+      a.add(3);
+      a.add(3);
+      System.out.println(a.get(2));
+      System.out.println(a);
 
   }//end main()
 
