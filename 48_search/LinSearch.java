@@ -1,4 +1,9 @@
 /**
+// MumbleCore - Abdullah Faruque, Neil Lin, Russell Goychayev
+// APCS pd08
+// HW48 - Halving the Halves
+// 2021-12-15
+// time spent: 0.2 hrs
    class LinSearch
 **/
 
