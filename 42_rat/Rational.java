@@ -25,12 +25,8 @@ public class Rational{
      return 1;
    }
    while(d != n){
-     if(n > d) {
-       n = n - d;
-     }
-     else{
-       d = d - n;
-     }
+     if(n > d) { n = n - d; }
+     else{ d = d - n; }
    }
    return d;
  }
@@ -41,8 +37,8 @@ public class Rational{
 
    if (denom == 0) {
      System.out.println("Invalid denominator.");
-   numer=0;
-   denom=1;
+     numer=0;
+     denom=1;
    }
  }
 
@@ -100,25 +96,4 @@ public class Rational{
   return 0;
  }
 
- public static void main(String[] args){
-   Rational r = new Rational(2,3);
-   Rational s = new Rational(1,2);
-   Rational t = new Rational(3,6);
-   System.out.println(r.toString());
-   System.out.println(r.floatValue());
-   r.multiply(s);
-   System.out.println(r.toString());
-   r.divide(s);
-   System.out.println(r.toString());
-   r.add(s);
-   System.out.println(r.toString());
-   r.subtract(s);
-   System.out.println(r.toString());
-   System.out.println(r.gcd());
-   r.reduce();
-   System.out.println(r.toString());
-   System.out.println(r.compareTo(s));
-   System.out.println(s.compareTo(r));
-   System.out.println(s.compareTo(t));
- }
 }
