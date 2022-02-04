@@ -3,7 +3,7 @@ Team Team: Brian Li, Justin Mohabir, Neil Lin; Ducks: Robert, Hans, Hatch
 APCS pd 7
 L05 -- pulling it together
 2022-02-03
-time spent: 0.7 hrs
+time spent: 1 hrs
 */
 
 /**
@@ -58,6 +58,9 @@ public class StatPrinter
   //          _frequency.get(i) returns frequency of i in data
   //eg, for data [2,3,2,5,2,3]
   //  _frequency would be [0,0,3,2,0,1]
+
+  // Big O of n^2, O(n^2)
+
   public StatPrinter( ArrayList <Integer> data )
   {
     int length = max(data) + 1;
@@ -76,6 +79,9 @@ public class StatPrinter
   //*************** QUESTION 01 **************************
   //precond:  data.size() > 0
   //postcond: returns largest integer in data
+
+  // Big O of n, O(n)
+
   public Integer max( ArrayList <Integer> data )
   {
     int max = 0;
@@ -96,6 +102,9 @@ public class StatPrinter
   //    isLocalMode(0) -> false
   //    isLocalMode(1) -> true
   //    isLocalMode(5) -> true
+
+  // Big O of 1, O(1)
+
   public boolean isLocalMode( int i )
   {
     return (i > 0 && i < _frequency.size() - 1
@@ -106,6 +115,9 @@ public class StatPrinter
 
   //*************** QUESTION 04 **************************
   //postcond: returns list of modes in _frequency
+
+  // Big O of n, O(n)
+
   public ArrayList<Integer> getLocalModes()
   {
     ArrayList<Integer> modeList = new ArrayList();
@@ -120,6 +132,9 @@ public class StatPrinter
 
   //*************** QUESTION 05 **************************
   //precond:  longestBar > 0
+
+  // Big O of n^2, O(n^2)
+
   public void printHistogram( int longestBar )
   {
     double ratio = ((double)longestBar) / max(_frequency);
