@@ -6,13 +6,10 @@ HW61 -- Instructions so Simple...
 time spent: 1.0 hrs
 
 DISCO:
-- You can prevent OutOfBound errors by accounting for the indices that can potentially cause an error.
-- We realized that the sort() method works recursively, so we used a base case of having 1 card, which
-  would mean that array is sorted, and then created new arrays with each half of the inputted array,
-  which we then repeated called merge() on after sorting each half.
+-IT LIKE WE DO IN CLASS... IT BE MAGIC
 
 QCC:
-- What's the runtime complexity of Merge Sort?
+-N/A
 */
 
 /***
