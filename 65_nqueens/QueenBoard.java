@@ -1,3 +1,19 @@
+// Team Team: Brian Li, Justin Mohabir, Neil Lin; Ducks: Robert, Hans, Hatch
+// APCS pd07
+// HW65 -- Solving nQueens
+// 2022-02-16
+// time spent: 1 hrs
+
+/*
+DISCO
+- There is no solution for a 2x2 or 3x3 chess board.
+- When we render a possible branch useless, we can "undo" our last move using removeQueen() and go to the next possibility.
+
+QCC
+- Why is there no solution only for the 2x2 or 3x3 board?
+- How can we display ALL solutions for a given chess board?
+*/
+
 /***
  * class QueenBoard
  * Generates solutions for N-Queens problem.
@@ -27,13 +43,10 @@ public class QueenBoard
    */
   public boolean solve()
   {
-    int column = 0;
-    if (column < _board.length){
-      if (solveH()){
-        
-      }
-    }
-    return false;
+    boolean isSolved = solveH(0); // solve, starting at column 0
+    printSolution();
+    if (isSolved){ return true; }
+    else { return false; }
   }
 
 
@@ -42,31 +55,24 @@ public class QueenBoard
    */
   private boolean solveH( int col )
   {
-    // if (col == _board.length - 1){ // base
-    //   if (addQueen(0, col)){
-    //     return true;
-    //   }
-    //   else{
-    //     removeQueen(0, col);
-    //     return false;
-    //   }
-    // }
-    // else { // recursive
-    //   return solveH(col + 1);
-    // }
+    if (col >= _board.length){ return true; } // reaches end of board with one queen placed per column
 
+    // places Q at next allowed cell in col
     for (int i = 0; i < _board.length; i++){
-      if (addQueen(i, col)){
-        printSolution();
-        removeQueen(i, col);
-        return true;
-      }
-      else{
-        removeQueen(i, col);
+      if (_board[i][col] == 0){ // empty spot found
+        addQueen(i, col);
+        if (solveH(col + 1)){
+          return true; // queen present once per column
+        }
+        else{
+          removeQueen(i, col); // else, queen is NOT present once per column.
+                               // place at next available cell and repeat.
+        }
       }
     }
 
-    return false;
+    return false; // if this point is reached, a queen has not been placed in this column.
+                  // therefore, this branch does not work.
   }
 
 
@@ -89,7 +95,7 @@ public class QueenBoard
       }
       ans += "\n";
     }
-    return ans;
+    System.out.println(ans);
   }
 
 
@@ -151,11 +157,11 @@ public class QueenBoard
 
 
   /***
-   * <General description>
+   * overwritten toString() method to display the chess board and its values
    * precondition: _board exists
    * postcondition: overwrites toString() method to show the board as a String
    */
-  public String  toString()
+  public String toString()
   {
     String ans = "";
     for( int r = 0; r < _board.length; r++ ) {
@@ -202,6 +208,13 @@ public class QueenBoard
        0	0	0	0	0
     */
 
+    System.out.println("Testing solves...");
+
+    QueenBoard board;
+    for (int i = 1; i <= 20; i++){
+      board = new QueenBoard(i);
+      board.solve();
+    }
   }
 
 }//end class
