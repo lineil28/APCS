@@ -1,8 +1,8 @@
-// Clyde Sinclair
-// APCS pd0
+// Team Team: Brian Li, Justin Mohabir, Neil Lin; Ducks: Robert, Hans, Hatch
+// APCS pd7
 // HW68 -- recursively probing for a closed cycle
 // 2022-02-28m
-// time spent:  hrs
+// time spent: 0.8 hrs
 
 /***
  * SKELETON
@@ -15,16 +15,25 @@
  * $ java KnightTour [N]
  *
  * ALGO
+ * Starting at the upper left corner:
+ * Find the next available cell that the knight is allowed to travel to.
+ * (Counterclockwise precedence starting at 6 o' clock)
+ * If the knight reaches a dead end without completing a cycle, undo its last move
+ * and take the next alternate route.
+ * Repeat.
  *
  * DISCO
+ * - The moat helps to prevent any possible out of bounds errors.
  *
  * QCC
+ * - Which is more efficient: breadth-first or depth-first?
+ * - How would you code this using a breadth-first approach?
  *
  * Mean execution times for boards of size n*n:
- * n=5   __s    across __ executions
- * n=6   __s    across __ executions
- * n=7   __s    across __ executions
- * n=8   __s    across __ executions
+ * n=5  1.927s       across 5 executions
+ * n=6  48.697s      across 5 executions
+ * n=7  1177.477s    across 2 executions
+ * n=8  1503.527s    across 2 executions
  *
  * POSIX PROTIP: to measure execution time from BASH, use time program:
  * $ time java KnightTour 5
@@ -58,8 +67,8 @@ public class KnightTour
     System.out.println( tf );
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    //for fixed starting location, use line below:
-    // tf.findTour( 2, 2, 1 );
+    // for fixed starting location, use line below:
+    tf.findTour( 2, 2, 1 );
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,6 +81,13 @@ public class KnightTour
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // PUSHING FARTHER...
     // Systematically attempt to solve from every position on the board?
+
+    // for(int i = 2; i < n+2; i++){
+    //   for (int j = 2; j < n+2; j++){
+    //     tf.findTour(i, j, 1);
+    //   }
+    // }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   }//end main()
@@ -172,16 +188,16 @@ class TourFinder
     //delay(50); //slow it down enough to be followable
 
     //if a tour has been completed, stop animation
-    if ( moves == n * n + 1) System.exit(0);
+    if ( _solved ) System.exit(0);
 
     //primary base case: tour completed
-    if ( moves == n * n + 1) {
-      ???
+    if ( moves == _sideLength * _sideLength + 1) {
+      _solved = true;
       System.out.println( this ); //refresh screen
       return;
     }
     //other base case: stepped off board or onto visited cell
-    if ( _board[x][y] == -1 ) {
+    if ( _board[x][y] != 0 ) {
       return;
     }
     //otherwise, mark current location
@@ -189,7 +205,7 @@ class TourFinder
     else {
 
       //mark current cell with current move number
-      _board[x][y] = n;
+      _board[x][y] = moves;
 
       System.out.println( this ); //refresh screen
 
@@ -198,17 +214,24 @@ class TourFinder
       /******************************************
        * Recursively try to "solve" (find a tour) from
        * each of knight's available moves.
-       *     . e . d .
-       *     f . . . c
-       *     . . @ . .
-       *     g . . . b
-       *     . h . a .
+       0     . e . d .
+       1     f . . . c
+       2     . . @ . .
+       3     g . . . b
+       4     . h . a .
       ******************************************/
-      ???
+      findTour(x+1, y+2, moves+1); // a
+      findTour(x+2, y+1, moves+1); // b
+      findTour(x+2, y-1, moves+1); // c
+      findTour(x+1, y-2, moves+1); // d
+      findTour(x-1, y-2, moves+1); // e
+      findTour(x-2, y-1, moves+1); // f
+      findTour(x-2, y+1, moves+1); // g
+      findTour(x-1, y+2, moves+1); // h
 
       //If made it this far, path did not lead to tour, so back up...
       // (Overwrite number at this cell with a 0.)
-        ???
+      _board[x][y] = 0;
 
       System.out.println( this ); //refresh screen
     }
