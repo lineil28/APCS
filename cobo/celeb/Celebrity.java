@@ -22,8 +22,8 @@ public class Celebrity
 	 */
 	public Celebrity(String answer, String clue)
 	{
-		ans = answer;
-		hint = clue;
+		this.ans = answer;
+		this.hint = clue;
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class Celebrity
 	 */
 	public String getClue()
 	{
-		return clue;
+		return hint;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Celebrity
 	 */
 	public String getAnswer()
 	{
-		return answer;
+		return ans;
 	}
 
 	/**
