@@ -48,7 +48,7 @@ public class CelebrityGame
 	 */
 	public boolean processGuess(String guess)
 	{
-		return false;
+		return (gameCelebrity.getAnswer().equals(guess));
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class CelebrityGame
 	 */
 	public int getCelebrityGameSize()
 	{
-		return 0;
+		return celebGameList.size();
 	}
 
 	/**
