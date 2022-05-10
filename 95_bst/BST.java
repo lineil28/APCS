@@ -18,18 +18,14 @@ public class BST
 
   //instance variables / attributes of a BST:
   TreeNode _root;
-  TreeNode leftST;
-  TreeNode rightST;
 
   /**
    * default constructor
    */
   BST()
   {
-    _root = NULL;
-    leftST = null;
-    rightST = null;
     /*** YOUR IMPLEMENTATION HERE ***/
+    this._root = null;
   }
 
 
@@ -40,17 +36,32 @@ public class BST
   public void insert( int newVal )
   {
     TreeNode newNode = new TreeNode( newVal );
-    if (<)
-    { insert(leftST, newNode);}
-    if (>)
-    { insert(leftST, newNode);}
     /*** YOUR IMPLEMENTATION HERE ***/
+    insert(this._root, newNode);
+    if (this._root == null) {
+      this._root = newNode;
+    } else {
+      insert(this._root, newNode);
+    }
+
   }
   //recursive helper for insert(int)
   public void insert( TreeNode stRoot, TreeNode newNode )
   {
-
     /*** YOUR IMPLEMENTATION HERE ***/
+    if (newNode.getValue() < stRoot.getValue()) { // place to the left
+      if (stRoot.getLeft() != null) {
+        insert(stRoot.getLeft(), newNode);
+      } else {
+        stRoot.setLeft(newNode);
+      }
+    } else {
+      if (stRoot.getRight() != null) {
+        insert(stRoot.getRight(), newNode);
+      } else {
+        stRoot.setRight(newNode);
+      }
+    }
   }//end insert()
 
 
@@ -70,16 +81,30 @@ public class BST
   public void preOrderTrav( TreeNode currNode )
   {
     /*** YOUR IMPLEMENTATION HERE ***/
+    System.out.println(currNode.getValue());
+    if (currNode.getLeft() != null) {
+      preOrderTrav(currNode.getLeft());
+    } else if (currNode.getRight() != null) {
+      preOrderTrav(currNode.getRight());
+    }
   }
 
   //recurse left, process root, recurse right
   public void inOrderTrav()
   {
     /*** YOUR IMPLEMENTATION HERE ***/
+    inOrderTrav(_root);
   }
   public void inOrderTrav( TreeNode currNode )
   {
     /*** YOUR IMPLEMENTATION HERE ***/
+    if (currNode.getLeft() != null) {
+      inOrderTrav(currNode.getLeft());
+    }
+    System.out.println(currNode.getValue());
+    if (currNode.getRight() != null) {
+      inOrderTrav(currNode.getRight());
+    }
   }
 
   //recurse left, recurse right, process root
@@ -90,6 +115,13 @@ public class BST
   public void postOrderTrav( TreeNode currNode )
   {
     /*** YOUR IMPLEMENTATION HERE ***/
+    if (currNode.getLeft() != null) {
+      postOrderTrav(currNode.getLeft());
+    }
+    if (currNode.getRight() != null) {
+      postOrderTrav(currNode.getRight());
+    }
+    System.out.println(currNode.getValue());
   }
 
   //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
