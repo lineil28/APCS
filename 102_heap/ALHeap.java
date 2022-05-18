@@ -1,10 +1,17 @@
+/***
+ * Team Green Smurfs: Neil Lin, Jomin Zhang, Eric
+ * APCS pd7
+ * HW102: Heap On Heapin' On
+ * 2022-05-10
+ * time elapsed: 0.5 hrs
+ ***/
 /**
  * class ALHeap
  * SKELETON
  * Implements a min heap using an ArrayList as underlying container
  */
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class ALHeap
 {
@@ -17,6 +24,7 @@ public class ALHeap
    */
   public ALHeap()
   {
+    _heap = new ArrayList<Integer>();
   }
 
 
@@ -29,6 +37,7 @@ public class ALHeap
    */
   public String toString()
   {
+    return "";
   }//O(?)
 
 
@@ -38,7 +47,8 @@ public class ALHeap
    */
   public boolean isEmpty()
   {
-  }//O(?)
+    return _heap.size() == 0;
+  }//O(1)
 
 
   /**
@@ -48,7 +58,8 @@ public class ALHeap
    */
   public Integer peekMin()
   {
-  }//O(?)
+    return _heap.get(0);
+  }//O(1)
 
 
   /**
@@ -57,10 +68,20 @@ public class ALHeap
    * Postcondition: Tree exhibits heap property.
    * ALGO:
    * <your clear && concise procedure here>
+   * insert at the end, if less then parent swap, otherwise do nothing
    */
   public void add( Integer addVal )
   {
-  }//O(?)
+    _heap.add(addVal);
+    int addValPos = _heap.size() - 1;
+    int parentPos = (addValPos - 1) / 2; // this floors for us
+
+    while (_heap.get(addValPos) < _heap.get(parentPos)) {
+      swap(addValPos, parentPos);
+      addValPos = parentPos;
+      parentPos = (addValPos - 1) / 2;
+    }
+  }//O(n)
 
 
   /**
@@ -69,10 +90,22 @@ public class ALHeap
    * Postcondition: Tree maintains heap property.
    * ALGO:
    * <your clear && concise procedure here>
+   * algo we used in class
    */
   public Integer removeMin()
   {
-  }//O(?)
+    int returnVal = _heap.remove(0); // i remove the first node
+    int lastLeaf = _heap.remove(_heap.size() - 1);
+    _heap.add(0, lastLeaf);
+    int swapthing = 0;
+    while (minChildPos(swapthing) != -1 && _heap.get(minChildPos(swapthing)) < _heap.get(swapthing) ) {
+      int temp = minChildPos(swapthing);
+      swap(swapthing, minChildPos(swapthing));
+      swapthing = temp;
+    }
+    return returnVal;
+
+  }//O(n)
 
 
   /**
@@ -83,7 +116,17 @@ public class ALHeap
    */
   private int minChildPos( int pos )
   {
-  }//O(?)
+    //do i have children?
+    if ((_heap.size() - 1) < (2*pos) + 1 ) {
+      return -1;
+    }
+    else if(minOf(_heap.get(2*pos + 1), _heap.get(2*pos  +2)) == _heap.get(2*pos + 1)) { // my child smalleest
+      return 2*pos + 1;
+    }
+    else {
+      return 2*pos + 2;
+    }
+  }//O(1)
 
 
   //~~~~~~~~~~~~~ aux helper fxns ~~~~~~~~~~~~~~
@@ -98,7 +141,7 @@ public class ALHeap
   //swap for an ArrayList
   private void swap( int pos1, int pos2 )
   {
-    _heap.set( pos1, _heap.set( pos2, _heap.get(pos1) ) );	
+    _heap.set( pos1, _heap.set( pos2, _heap.get(pos1) ) );
   }
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -107,7 +150,7 @@ public class ALHeap
   //main method for testing
   public static void main( String[] args )
   {
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
       ALHeap pile = new ALHeap();
 
       pile.add(2);
@@ -153,6 +196,7 @@ public class ALHeap
       System.out.println(pile);
       System.out.println("removing " + pile.removeMin() + "...");
       System.out.println(pile);
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   }//end main()
 
